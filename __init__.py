@@ -17,7 +17,7 @@
 #
 # ##### END GPL LICENSE BLOCK #####
 
-
+from . import util
 import bpy
 
 from bpy.props import (
@@ -84,6 +84,19 @@ class SJReflashScripts(bpy.types.Operator):
         return {'FINISHED'}
 
 
+class SJOpenSceneFileDir(bpy.types.Operator):
+    r""""""
+    bl_idname = "sj_util_tools.open_scene_file_dir"
+    bl_label = "Open file dir"
+    bl_description = "Open file dir"
+    # bl_options = {'UNDO', 'PRESET'}
+
+    def execute(self, context):
+        r""""""
+        util.open_exproler(bpy.data.filepath)
+        return {'FINISHED'}
+
+
 class SJUtilToolsPanel(bpy.types.Panel):
     r""""""
     bl_label = "SJ Util"
@@ -95,12 +108,14 @@ class SJUtilToolsPanel(bpy.types.Panel):
         layout = self.layout
         col = layout.column()
         col.operator("sj_util_tools.reload_scripts", text="", icon="FILE_REFRESH")
+        col.operator("sj_util_tools.open_scene_file_dir", text="", icon="FILE_FOLDER")
         # col.operator("sj_util_tools.reflash_script")
 
 
 classes = (
     SJReloadScripts,
     SJReflashScripts,
+    SJOpenSceneFileDir,
     SJUtilToolsPanel
     )
 
