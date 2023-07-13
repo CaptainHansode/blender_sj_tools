@@ -35,3 +35,7 @@ def open_exproler(file_path):
         cmd = 'explorer \"{}\"'.format(file_path.replace("/", os.sep))
     subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
     return None
+
+
+def _test():
+    pass
