@@ -93,16 +93,32 @@ class SJOpenSceneFileDir(bpy.types.Operator):
 
     def execute(self, context):
         r""""""
+        print("aaaa")
         util.open_exproler(bpy.data.filepath)
         return {'FINISHED'}
 
 
 class SJUtilToolsPanel(bpy.types.Panel):
     r""""""
-    bl_label = "SJ Util"
-    bl_idname = "SJ_Util_Tools"
-    bl_space_type = 'VIEW_3D'
-    bl_region_type = 'TOOLS'
+    bl_label = "SJ"
+    bl_idname = "sj_util_panel"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "TOOLS"
+
+    def draw(self, context):
+        layout = self.layout
+        col = layout.column()
+        col.operator("sj_util_tools.reload_scripts", text="", icon="FILE_REFRESH")
+        col.operator("sj_util_tools.open_scene_file_dir", text="", icon="FILE_FOLDER")
+        # col.operator("sj_util_tools.reflash_script")
+
+
+class SJUtilToolsNodePanel(bpy.types.Panel):
+    r""""""
+    bl_label = "SJ"
+    bl_idname = "sj_util_node_panel"
+    bl_space_type = "NODE_EDITOR"
+    bl_region_type = "TOOLS"
 
     def draw(self, context):
         layout = self.layout
@@ -116,7 +132,8 @@ classes = (
     SJReloadScripts,
     SJReflashScripts,
     SJOpenSceneFileDir,
-    SJUtilToolsPanel
+    SJUtilToolsPanel,
+    SJUtilToolsNodePanel
     )
 
 
