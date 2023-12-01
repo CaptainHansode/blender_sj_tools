@@ -2,6 +2,11 @@
 import os
 import subprocess
 import bpy
+import addon_utils
+
+"""addon_utils
+https://github.com/dfelinto/blender/blob/master/release/scripts/modules/addon_utils.py
+"""
 
 
 def console_print(*msg):
@@ -39,3 +44,19 @@ def open_exproler(file_path):
 
 def _test():
     pass
+
+
+def _my_addons_set_enable():
+    # pref info
+    preferences = bpy.context.preferences
+
+    # addon list
+    my_addons = ["sj_tests", "sj_util_tools", "sj_show_icon", "sj_set_bone_nator", "sj_selection_set", "sj_change_viewportdisplay_nator", "sj_phaser", "sj_delete_keyframe_by_interval", "sj_bioskin"]
+    # current
+    curt_addons = [addon.module for addon in preferences.addons]
+
+    for addon_name in my_addons:
+        if addon_name not in curt_addons:
+            addon_utils.enable(addon_name, default_set=True)
+        # else:
+        #     addon_utils.disable(addon_name, default_set=True)
